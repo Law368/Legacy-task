@@ -7,6 +7,7 @@ $(document).ready(function(){
             return false;
         }
         Get_scores();
+        $('#finalScore').modal('show');
         return false;
     });
 });
@@ -60,13 +61,31 @@ function Get_scores() {
 
     var value = fullInTopics() + choiceTopics() + multipleChoiceTopics() + trueOrFalseTopics() + shortAnswerTopics();
     $("#scores").text(value);
+    $("#modalScores").text(value);
     $('#divScores').addClass('text-danger');
+
+    var markResult = function () {
+        if (value >= 90) {
+            mark = 'A';
+        } else if (value >= 70) {
+            mark = 'B';
+        } else if (value >= 50) {
+            mark = 'C';
+        } else if (value >= 30) {
+            mark = 'D'
+        } else if (value >= 0) {
+            mark = 'F'
+        } 
+        return mark;
+    }
+
+    $("#mark").text(markResult);
 
 }
 
 function fullInTopics() {
-    var fullInSubject1 = new Subject('fullInSubject', ['统一建模语言'], 1, 5);
-    var fullInSubject2 = new Subject('fullInSubject', ['继承性', '多态性', '封装性'], 3, 5);
+    var fullInSubject1 = new Subject('fullInSubject', ['Unified Modeling Language'], 1, 5); //
+    var fullInSubject2 = new Subject('fullInSubject', ['inheritance', 'polymorphism', 'encapsulation'], 3, 5); // 'inheritance', 'polymorphism', 'encapsulation'
 
     var value1_1_1 = $('#gap1').val();
 
@@ -77,7 +96,7 @@ function fullInTopics() {
     var value1_2 = [];
     value1_2.push($('#gap2_1').val());
     value1_2.push($('#gap2_2').val());
-    value1_2.push($('gap2_3').val());
+    value1_2.push($('#gap2_3').val());
 
     for (var i = 0; i < fullInSubject2.answer.length; i++) {
         for (var j = 0; j < value1_2.length; j++) {
@@ -137,7 +156,7 @@ function multipleChoiceTopics() {
 }
 
 function trueOrFalseTopics() {
-    var trueOrFalseSubject = new Subject('trueOrFalseSubject', ['no', 'yes'], 2, 10);
+    var trueOrFalseSubject = new Subject('trueOrFalseSubject', ['no', 'yes', 'yes'], 3, 10);
     var trueOrFalseSubject1 = new ChoiceSubject('ans_1');
     var value1 = trueOrFalseSubject1.calculation();
     var trueOrFalseSubject2 = new ChoiceSubject('ans_2');
@@ -156,7 +175,7 @@ function trueOrFalseTopics() {
 
 function shortAnswerTopics() {
     var shortAnswerSubject = new Subject('shortAnswerSubject',
-        ['模型是对现实世界的简化和抽象,模型是对所研究的系统、过程、事物或概念的一种表达形式。可以是物理实体;可以是某种图形;或者是一种数学表达式。'],
+        ['A model is a simplification and abstraction of the real world, and a model is a form of expression for the system, process, thing or concept under study. It can be a physical entity; it can be some kind of graphic; or it can be a mathematical expression.'],
         1, 20);
     var value5 = $('#short5').val();
 
