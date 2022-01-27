@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    addStudentsToTheList();
     $('#btnSubmit').on('click',function(){
 
         if (hasEmptyRequiredInput()) {
@@ -30,22 +31,46 @@ function inputsInformation(inputs) {
     return text;
 }
 
+var students = [
+    {
+        studentClass: 1,
+        studentNumber: 1,
+        studentName: 'John'
+    },
+    {
+        studentClass: 2,
+        studentNumber: 2,
+        studentName: 'Natalia'
+    },
+    {
+        studentClass: 3,
+        studentNumber: 3,
+        studentName: 'Alexander'
+    },
+    {
+        studentClass: 4,
+        studentNumber: 4,
+        studentName: 'Josef'
+    }
+]
+
+function addStudentsToTheList() {
+    select = document.querySelector('#studentList');
+    for (var i = 0; i < students.length; i++) {
+        var option = document.createElement('option');
+        option.value = students[i].studentNumber;
+        option.dataset.class = students[i].studentClass;
+        option.innerHTML = students[i].studentName;
+        select.appendChild(option);
+    }
+}
+
 function hasEmptyRequiredInput(){
     var requiredInputs = [
         {
-            id: 'studentClass',
-            text: '班级',
-            divId: 'class'
-        },
-        {
-            id: 'studentNumber',
-            text: '学号',
-            divId: 'number'
-        },
-        {
-            id: 'studentName',
-            text: '姓名',
-            divId: 'name'
+            id: 'studentList',
+            text: 'Some random text',
+            divId: 'student'
         }
     ];
 
