@@ -142,7 +142,9 @@ function trueOrFalseTopics() {
     var value1 = trueOrFalseSubject1.calculation();
     var trueOrFalseSubject2 = new ChoiceSubject('ans_2');
     var value2 = trueOrFalseSubject2.calculation();
-    var value = [value1, value2];
+    var trueOrFalseSubject3 = new ChoiceSubject('ans_3');
+    var value3 = trueOrFalseSubject3.calculation();
+    var value = [value1, value2, value3];
 
     for (var i = 0; i < value.length; i++) {
         if (value[i] == trueOrFalseSubject.answer[i]) {
